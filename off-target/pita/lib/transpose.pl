@@ -3,7 +3,7 @@
 ##############################################################################
 ##############################################################################
 ##
-## EXE_BASE_DIR/lib/transpose.pl
+## /d/teleparadigm/OligoFormer/off-target/pita/lib/transpose.pl
 ##
 ##############################################################################
 ##############################################################################
@@ -29,7 +29,7 @@
 ##############################################################################
 ##############################################################################
 
-require "EXE_BASE_DIR/lib/libfile.pl";
+require "/d/teleparadigm/OligoFormer/off-target/pita/lib/libfile.pl";
 
 use strict;
 use warnings;
@@ -102,7 +102,7 @@ $verbose and print STDERR " done.\n";
 exit(0);
 
 __DATA__
-syntax: EXE_BASE_DIR/lib/transpose.pl [OPTIONS] [FILE | < FILE]
+syntax: /d/teleparadigm/OligoFormer/off-target/pita/lib/transpose.pl [OPTIONS] [FILE | < FILE]
 
 Transposes a table -- flips the rows and columns so that what
 were columns in the original table become the rows and what

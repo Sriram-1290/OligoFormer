@@ -2,8 +2,8 @@
 
 use strict;
 
-require "EXE_BASE_DIR/lib/load_args.pl";
-require "EXE_BASE_DIR/lib/libfile.pl";
+require "/d/teleparadigm/OligoFormer/off-target/pita/lib/load_args.pl";
+require "/d/teleparadigm/OligoFormer/off-target/pita/lib/libfile.pl";
 
 if ($ARGV[0] eq "--help")
 {
@@ -80,7 +80,7 @@ while (<$file_ref>)
 
 __DATA__
 
-EXE_BASE_DIR/lib/merge_columns.pl <file>
+/d/teleparadigm/OligoFormer/off-target/pita/lib/merge_columns.pl <file>
 
    Merges 2 columns with a specified delimiter
 

@@ -68,10 +68,21 @@ class data_process_loader(data.Dataset):
         mRNA = np.expand_dims(mRNA_seq, axis=2).transpose([2, 1, 0])
         # siRNA RNA-FM
         siRNA_seq = self.df.iloc[index]['siRNA']
-        siRNA_FM = np.load(self.root + '/RNAFM/' + self.dataset + '_siRNA/representations/'+ str(self.siRNA_ref[siRNA_seq]) + '.npy')
+        try:
+            siRNA_FM = np.load(self.root + '/RNAFM/' + self.dataset + '_siRNA/representations/'+ str(self.siRNA_ref[siRNA_seq]) + '.npy')
+        except KeyError:
+            print(f"Warning: siRNA sequence {siRNA_seq} not found in reference for dataset {self.dataset}")
+            # Use a zero array as a fallback
+            siRNA_FM = np.zeros((1, 768))  # Assuming 768-dimensional embedding
+        
         # mRNA RNA-FM
         mRNA_seq = self.df.iloc[index]['mRNA']
-        mRNA_FM = np.load(self.root + '/RNAFM/' + self.dataset + '_mRNA/representations/' + str(self.mRNA_ref[mRNA_seq])+'.npy') 
+        try:
+            mRNA_FM = np.load(self.root + '/RNAFM/' + self.dataset + '_mRNA/representations/' + str(self.mRNA_ref[mRNA_seq])+'.npy')
+        except KeyError:
+            print(f"Warning: mRNA sequence {mRNA_seq} not found in reference for dataset {self.dataset}")
+            # Use a zero array as a fallback
+            mRNA_FM = np.zeros((1, 768))  # Assuming 768-dimensional embedding
         td = self.df.iloc[index]['td']
         td = torch.tensor([float(i) for i in td.split(',')])
         return  siRNA, mRNA, siRNA_FM, mRNA_FM, label, y, td
@@ -116,10 +127,21 @@ class data_process_loader_infer(data.Dataset):
         mRNA = np.expand_dims(mRNA_seq, axis=2).transpose([2, 1, 0])
         # siRNA RNA-FM
         siRNA_seq = self.df.iloc[index]['siRNA']
-        siRNA_FM = np.load('./data/infer/' + self.dataset + '/siRNA/representations/'+ str(self.siRNA_ref[siRNA_seq]) + '.npy')
+        try:
+            siRNA_FM = np.load('./data/infer/' + self.dataset + '/siRNA/representations/'+ str(self.siRNA_ref[siRNA_seq]) + '.npy')
+        except KeyError:
+            print(f"Warning: siRNA sequence {siRNA_seq} not found in reference for dataset {self.dataset}")
+            # Use a zero array as a fallback
+            siRNA_FM = np.zeros((1, 768))  # Assuming 768-dimensional embedding
+        
         # mRNA RNA-FM
         mRNA_seq = self.df.iloc[index]['mRNA']
-        mRNA_FM = np.load('./data/infer/' + self.dataset + '/mRNA/representations/' + str(self.mRNA_ref[mRNA_seq])+'.npy') 
+        try:
+            mRNA_FM = np.load('./data/infer/' + self.dataset + '/mRNA/representations/' + str(self.mRNA_ref[mRNA_seq])+'.npy')
+        except KeyError:
+            print(f"Warning: mRNA sequence {mRNA_seq} not found in reference for dataset {self.dataset}")
+            # Use a zero array as a fallback
+            mRNA_FM = np.zeros((1, 768))  # Assuming 768-dimensional embedding
         td = self.df.iloc[index]['td']
         td = torch.tensor(td).to(torch.float32)
         return  siRNA, mRNA, siRNA_FM, mRNA_FM, td

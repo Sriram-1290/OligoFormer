@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 
-require "EXE_BASE_DIR/lib/libfile.pl";
-require "EXE_BASE_DIR/lib/load_args.pl";
+require "/d/teleparadigm/OligoFormer/off-target/pita/lib/libfile.pl";
+require "/d/teleparadigm/OligoFormer/off-target/pita/lib/load_args.pl";
 
 
 use strict;
@@ -189,7 +189,7 @@ exit(0);
 
 __DATA__
 
-syntax: EXE_BASE_DIR/lib/cut.pl [OPTIONS] TAB_FILE
+syntax: /d/teleparadigm/OligoFormer/off-target/pita/lib/cut.pl [OPTIONS] TAB_FILE
 
 TAB_FILE is any tab-delim_inited file.  Can also be passed into standard
    input.

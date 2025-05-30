@@ -2,7 +2,7 @@
 
 use strict;
 
-require "EXE_BASE_DIR/lib/load_args.pl";
+require "/d/teleparadigm/OligoFormer/off-target/pita/lib/load_args.pl";
 
 if ($ARGV[0] eq "--help")
 {
@@ -238,7 +238,7 @@ sub remove_illegal_xml_chars
 
 __DATA__
 
-EXE_BASE_DIR/lib/tab2feature_gxt.pl <file> 
+/d/teleparadigm/OligoFormer/off-target/pita/lib/tab2feature_gxt.pl <file> 
 
     Creates a feature gxt file from a tab file
 

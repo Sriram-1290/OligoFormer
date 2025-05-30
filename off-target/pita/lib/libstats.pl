@@ -3,7 +3,7 @@
 use strict;
 use POSIX;
 
-require "EXE_BASE_DIR/lib/ltqnorm.pl";
+require "/d/teleparadigm/OligoFormer/off-target/pita/lib/ltqnorm.pl";
 
 my $MAXDOUBLE = 1e200;
 

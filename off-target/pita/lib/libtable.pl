@@ -275,7 +275,7 @@ sub sequentialJoin
    for(my $i = 1; $i <= $#in_files; $i++)
    {
       my $in_file   = $in_files[$i];
-      $join .= "| EXE_BASE_DIR/lib/join.pl -q - $in_file ";
+      $join .= "| /d/teleparadigm/OligoFormer/off-target/pita/lib/join.pl -q - $in_file ";
    }
    $join .= "> $out_file";
 

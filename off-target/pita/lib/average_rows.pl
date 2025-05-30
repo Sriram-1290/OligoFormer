@@ -2,10 +2,10 @@
 
 use strict;
 
-require "EXE_BASE_DIR/lib/load_args.pl";
-require "EXE_BASE_DIR/lib/format_number.pl";
-require "EXE_BASE_DIR/lib/libstats.pl";
-require "EXE_BASE_DIR/lib/vector_ops.pl";
+require "/d/teleparadigm/OligoFormer/off-target/pita/lib/load_args.pl";
+require "/d/teleparadigm/OligoFormer/off-target/pita/lib/format_number.pl";
+require "/d/teleparadigm/OligoFormer/off-target/pita/lib/libstats.pl";
+require "/d/teleparadigm/OligoFormer/off-target/pita/lib/vector_ops.pl";
 
 if ($ARGV[0] eq "--help")
 {
@@ -291,7 +291,7 @@ sub GetKey (\@)
 
 __DATA__
 
-EXE_BASE_DIR/lib/average_rows.pl <source file>
+/d/teleparadigm/OligoFormer/off-target/pita/lib/average_rows.pl <source file>
 
    Average rows in <source file> that have the same key
 

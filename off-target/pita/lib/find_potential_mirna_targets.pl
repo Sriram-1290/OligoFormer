@@ -2,8 +2,8 @@
 
 use strict;
 
-require "EXE_BASE_DIR/lib/load_args.pl";
-require "EXE_BASE_DIR/lib/sequence_helpers.pl";
+require "/d/teleparadigm/OligoFormer/off-target/pita/lib/load_args.pl";
+require "/d/teleparadigm/OligoFormer/off-target/pita/lib/sequence_helpers.pl";
 
 if ($ARGV[0] eq "--help")
 {
@@ -352,7 +352,7 @@ sub FindPairings
 
 __DATA__
 
-EXE_BASE_DIR/lib/find_potential_mirna_targets.pl <file>
+/d/teleparadigm/OligoFormer/off-target/pita/lib/find_potential_mirna_targets.pl <file>
 
    Takes in a stab file of targets and a stab file of mirnas, 
    and outputs locations of potential start sites within the input stab 

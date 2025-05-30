@@ -2,8 +2,8 @@
 
 use strict;
 
-require "EXE_BASE_DIR/lib/load_args.pl";
-require "EXE_BASE_DIR/lib/sequence_helpers.pl";
+require "/d/teleparadigm/OligoFormer/off-target/pita/lib/load_args.pl";
+require "/d/teleparadigm/OligoFormer/off-target/pita/lib/sequence_helpers.pl";
 
 if ($ARGV[0] eq "--help")
 {
@@ -152,7 +152,7 @@ while(<$file_ref>)
 
 __DATA__
 
-EXE_BASE_DIR/lib/extract_sequence.pl <file>
+/d/teleparadigm/OligoFormer/off-target/pita/lib/extract_sequence.pl <file>
 
    Extracts a sequence from a given stab file
 

@@ -1,0 +1,8 @@
+2025-04-28 10:50:59,624 prediction INFO: Using CPU
+2025-04-28 10:50:59,624 prediction INFO: Loaded configuration file pretrained/extract_embedding.yml
+2025-04-28 10:50:59,625 prediction INFO: Model File:./pretrained/RNA-FM_pretrained.pth
+2025-04-28 10:50:59,625 prediction INFO: Batch Size:1
+2025-04-28 10:50:59,625 prediction INFO: Threshold:0.5
+2025-04-28 10:50:59,625 prediction INFO: Prediction Dataset: ../../data/fasta/Hu_siRNA.fa
+2025-04-28 10:51:17,665 prediction.inference INFO: Enter inferencing for Custom set
+2025-04-28 10:56:25,162 prediction.inference INFO: Finish Prediction

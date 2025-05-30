@@ -1,0 +1,8 @@
+2025-05-07 16:30:04,870 prediction INFO: Using CPU
+2025-05-07 16:30:04,870 prediction INFO: Loaded configuration file pretrained/extract_embedding.yml
+2025-05-07 16:30:04,871 prediction INFO: Model File:./pretrained/RNA-FM_pretrained.pth
+2025-05-07 16:30:04,871 prediction INFO: Batch Size:1
+2025-05-07 16:30:04,871 prediction INFO: Threshold:0.5
+2025-05-07 16:30:04,871 prediction INFO: Prediction Dataset: ..\..\data\infer\RNA0/mRNA.fa
+2025-05-07 16:30:22,703 prediction.inference INFO: Enter inferencing for Custom set
+2025-05-07 16:30:30,792 prediction.inference INFO: Finish Prediction

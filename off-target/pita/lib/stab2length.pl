@@ -2,9 +2,9 @@
 
 use strict;
 
-require "EXE_BASE_DIR/lib/load_args.pl";
-require "EXE_BASE_DIR/lib/format_number.pl";
-require "EXE_BASE_DIR/lib/system.pl";
+require "/d/teleparadigm/OligoFormer/off-target/pita/lib/load_args.pl";
+require "/d/teleparadigm/OligoFormer/off-target/pita/lib/format_number.pl";
+require "/d/teleparadigm/OligoFormer/off-target/pita/lib/system.pl";
 
 if ($ARGV[0] eq "--help")
 {
@@ -55,7 +55,7 @@ while(<$file_ref>)
 
 __DATA__
 
-EXE_BASE_DIR/lib/stab2length.pl <file>
+/d/teleparadigm/OligoFormer/off-target/pita/lib/stab2length.pl <file>
 
    Outputs the length of each sequence
 

@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 
-require "EXE_BASE_DIR/lib/libfile.pl";
-require "EXE_BASE_DIR/lib/libtable.pl";
+require "/d/teleparadigm/OligoFormer/off-target/pita/lib/libfile.pl";
+require "/d/teleparadigm/OligoFormer/off-target/pita/lib/libtable.pl";
 
 use strict;
 
@@ -598,7 +598,7 @@ exit(0);
 ################# END MAIN #############################
 
 __DATA__
-syntax: EXE_BASE_DIR/lib/join.pl [OPTIONS] FILE1 FILE2
+syntax: /d/teleparadigm/OligoFormer/off-target/pita/lib/join.pl [OPTIONS] FILE1 FILE2
 
 This script takes two tables, contained in delimited files, as input and
 produces a new table that is a join of FILE1 and FILE2.  The script assumes

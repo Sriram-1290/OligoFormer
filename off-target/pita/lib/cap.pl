@@ -72,7 +72,7 @@ while(<$file>)
 }
 
 __DATA__
-EXE_BASE_DIR/lib/cap.pl [OPTIONS] COMMA-SEPERATED-LIST FILE
+/d/teleparadigm/OligoFormer/off-target/pita/lib/cap.pl [OPTIONS] COMMA-SEPERATED-LIST FILE
 
 TAB_FILE - a tab-delimited file (can also be passed into standard input.
 

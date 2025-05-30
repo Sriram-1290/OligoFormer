@@ -222,14 +222,20 @@ def train(Args):
 		#train_loss, train_acc, train_sen, train_spe, train_pre, train_rec, train_f1, train_rocauc, train_prauc, train_mcc, train_label, train_pred = val(OFmodel, criterion, train_ds)
 		val_loss, val_acc, val_sen, val_spe, val_pre, val_rec, val_f1, val_rocauc, val_prauc, val_mcc, val_label, val_pred = val(OFmodel, criterion, valid_ds)
 		test_loss, test_acc, test_sen, test_spe, test_pre, test_rec, test_f1, test_rocauc, test_prauc, test_mcc, test_label, test_pred = val(OFmodel, criterion, test_ds)
-		if  val_loss < best_loss and val_rocauc > best_AUC: #
+		if val_loss < best_loss and val_rocauc > best_AUC:
 			best_AUC = val_rocauc
 			best_loss = val_loss
 			best_epoch = epoch
-			msg = "epoch-%d, loss-%.4f, val_loss-%.4f, val_acc-%.4f,val_pre-%.4f, val_rec-%.4f, val_rocauc-%.4f, val_prc-%.4f,val_f1-%.4f ***" % (epoch, epoch_loss, val_loss, val_acc, val_pre, val_rec,val_rocauc,val_prauc,val_f1)
-			torch.save(OFmodel.state_dict(), os.path.join(logger.get_model_dir(), msg+'.pth'))
+			# Create a simpler filename without special characters
+			model_filename = f"epoch_{epoch:03d}_loss_{val_loss:.4f}_auc_{val_rocauc:.4f}.pth"
+			model_path = os.path.join(logger.get_model_dir(), model_filename)
+			# Ensure directory exists
+			os.makedirs(os.path.dirname(model_path), exist_ok=True)
+			# Save the model
+			torch.save(OFmodel.state_dict(), model_path)
+			msg = f"epoch-{epoch}, loss-{epoch_loss:.4f}, val_acc-{val_acc:.4f}, val_f1-{val_f1:.4f}, val_pre-{val_pre:.4f}, val_rec-{val_rec:.4f}, val_rocauc-{val_rocauc:.4f}, val_prc-{val_prauc:.4f}, val_f1-{val_f1:.4f}, val_loss-{val_loss:.4f}, test_rocauc-{test_rocauc:.4f} ***"
 		else:
-			msg = "epoch-%d, loss-%.4f, val_loss-%.4f, val_acc-%.4f,val_pre-%.4f, val_rec-%.4f, val_rocauc-%.4f, val_prc-%.4f,val_f1-%.4f ***" % (epoch, epoch_loss, val_loss, val_acc, val_pre, val_rec,val_rocauc,val_prauc,val_f1)
+			msg = f"epoch-{epoch}, loss-{epoch_loss:.4f}, val_loss-{val_loss:.4f}, val_acc-{val_acc:.4f}, val_pre-{val_pre:.4f}, val_rec-{val_rec:.4f}, val_rocauc-{val_rocauc:.4f}, val_prc-{val_prauc:.4f}, val_f1-{val_f1:.4f}, test_rocauc-{test_rocauc:.4f}"
 		logger.info(msg)
 		if epoch - best_epoch > tolerence_epoch:
 			break

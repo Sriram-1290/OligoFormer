@@ -11,6 +11,7 @@ from model import Oligo
 import warnings
 warnings.filterwarnings("ignore")
 device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+import shutil
 
 from datetime import datetime
 import time
@@ -120,7 +121,7 @@ def func_filter(siRNA):
     def GC_content(siRNA):
         GC = siRNA.count('G') + siRNA.count('C')
         return GC / len(siRNA) * 100
-    
+
     def five_bases_in_a_row(siRNA):
         pattern = ['AAAAA', 'UUUUU', 'CCCCC', 'GGGGG']
         pattern = [re.compile(p) for p in pattern]
@@ -128,7 +129,7 @@ def func_filter(siRNA):
             if re.search(p, siRNA):
                 return True
         return False
-    
+
     def six_Gs_or_Cs_in_a_row(siRNA):
         pattern = [''.join(i) for i in itertools.product(('G', 'C'), repeat=6)]
         pattern = [re.compile(p) for p in pattern]
@@ -136,14 +137,14 @@ def func_filter(siRNA):
             if re.search(p, siRNA):
                 return True
         return False
-    
+
     def palindromic_sequence(siRNA):
         for i in range(len(siRNA) - 8 + 1):
             pattern = siRNA[i:i+4][::-1].translate(str.maketrans('AUCG', 'UAGC'))
             if re.search(pattern, siRNA[i+4:]):
                 return True
         return False
-        
+
     label = list()
     for s in siRNA:
         if GC_content(s) < 30 or GC_content(s) > 65:
@@ -171,7 +172,7 @@ def infer(Args):
 	a = datetime.now() #获得当前时间
 	if Args.all_human:
 		Args.utr = './off-target/ref/human_UTR.txt'
-		Args.orf = './off-target/ref/human_UTR.txt'
+		Args.orf = './off-target/ref/human_ORF.txt'
 	if Args.infer == 1:
 		with open(Args.infer_fasta) as fa:
 			fa_dict = {}
@@ -210,7 +211,7 @@ def infer(Args):
 			_siRNA = list()
 			_cRNA = list()
 			if not Args.infer_siRNA_fasta:
-				for i in range(len(_mRNA) - 19 + 1): 
+				for i in range(len(_mRNA) - 19 + 1):
 					_siRNA.append(antiRNA(_mRNA[i:i+19]))
 				for i in range(len(_mRNA) - 19 + 1):
 					_cRNA.append('X' * max(0, 19-i) + _mRNA[max(0,i-19):(i+38)] + 'X' * max(0,i+38-len(_mRNA)))
@@ -225,16 +226,20 @@ def infer(Args):
 			_infer_df = calculate_td(_infer_df)
 			if not os.path.exists('./data/infer'):
 				os.mkdir('./data/infer')
-			os.system('rm -rf ./data/infer/' + _name)
-			os.system('mkdir ./data/infer/' + _name)
+			infer_path = os.path.join('data', 'infer', _name)
+			if os.path.exists(infer_path):
+				shutil.rmtree(infer_path)
+			os.makedirs(infer_path)
 			for i in range(_infer_df.shape[0]):
-				with open('./data/infer/' + _name + '/siRNA.fa','a') as f:
+				siRNA_path = os.path.join(infer_path, 'siRNA.fa')
+				mRNA_path = os.path.join(infer_path, 'mRNA.fa')
+				with open(siRNA_path, 'a') as f:
 					f.write('>RNA' + str(i) + '\n')
 					f.write(_infer_df['siRNA'][i] + '\n')
-				with open('./data/infer/' + _name + '/mRNA.fa','a') as f:
+				with open(mRNA_path, 'a') as f:
 					f.write('>RNA' + str(i) + '\n')
 					f.write(_infer_df['mRNA'][i] + '\n')
-			os.system('sh scripts/RNA-FM.sh ../../data/infer/' + _name)
+			os.system('scripts\\RNA-FM.bat ..\\..\\data\\infer\\' + _name)
 			params = {'batch_size': 1,
 				'shuffle': False,
 				'num_workers': 0,
@@ -332,7 +337,7 @@ def infer(Args):
 					if Args.toxicity:
 						RESULT['filter'] = RESULT['toxicity_filter']
 					else:
-						RESULT['filter'] = [0] * RESULT.shape[0]				
+						RESULT['filter'] = [0] * RESULT.shape[0]
 			RESULT_ranked = RESULT.sort_values(by='efficacy', ascending=False)
 			RESULT_ranked_filtered = RESULT[RESULT['filter'] == 0].sort_values(by='efficacy', ascending=False)
 			RESULT.to_csv(Args.output_dir + str(_name) + '.txt',sep='\t',index = None,header=True)
@@ -348,7 +353,7 @@ def infer(Args):
 			raise Exception("The length of mRNA is less than 19 nt!")
 		_infer_df = pd.DataFrame(columns=['siRNA','mRNA'])
 		_siRNA = list()
-		for i in range(len(_mRNA) - 19 + 1): 
+		for i in range(len(_mRNA) - 19 + 1):
 			_siRNA.append(antiRNA(_mRNA[i:i+19]))
 		_infer_df['siRNA'] = _siRNA
 		_cRNA = list()
@@ -358,16 +363,20 @@ def infer(Args):
 		_infer_df = calculate_td(_infer_df)
 		if not os.path.exists('./data/infer'):
 				os.mkdir('./data/infer')
-		os.system('rm -rf ./data/infer/' + _name)
-		os.system('mkdir ./data/infer/' + _name)
+		infer_path = os.path.join('data', 'infer', _name)
+		if os.path.exists(infer_path):
+			shutil.rmtree(infer_path)
+		os.makedirs(infer_path)
 		for i in range(_infer_df.shape[0]):
-			with open('./data/infer/' + _name + '/siRNA.fa','a') as f:
+			siRNA_path = os.path.join(infer_path, 'siRNA.fa')
+			mRNA_path = os.path.join(infer_path, 'mRNA.fa')
+			with open(siRNA_path, 'a') as f:
 				f.write('>RNA' + str(i) + '\n')
 				f.write(_infer_df['siRNA'][i] + '\n')
-			with open('./data/infer/' + _name + '/mRNA.fa','a') as f:
+			with open(mRNA_path, 'a') as f:
 				f.write('>RNA' + str(i) + '\n')
 				f.write(_infer_df['mRNA'][i] + '\n')
-		os.system('sh scripts/RNA-FM.sh ../../data/infer/' + _name)
+		os.system('scripts\\RNA-FM.bat ..\\..\\data\\infer\\' + _name)
 		params = {'batch_size': 1,
 			'shuffle': False,
 			'num_workers': 0,

@@ -4,9 +4,9 @@ use strict;
 use Scalar::Util qw(looks_like_number);
 use POSIX qw(floor ceil);
 
-require "EXE_BASE_DIR/lib/libfile.pl";
-require "EXE_BASE_DIR/lib/format_number.pl";
-require "EXE_BASE_DIR/lib/load_args.pl";
+require "/d/teleparadigm/OligoFormer/off-target/pita/lib/libfile.pl";
+require "/d/teleparadigm/OligoFormer/off-target/pita/lib/format_number.pl";
+require "/d/teleparadigm/OligoFormer/off-target/pita/lib/load_args.pl";
 
 
 if ($ARGV[0] eq "--help")
@@ -474,7 +474,7 @@ if ($prescan_file){
 
 __DATA__
 
-EXE_BASE_DIR/lib/modify_column.pl <file>
+/d/teleparadigm/OligoFormer/off-target/pita/lib/modify_column.pl <file>
 
    Modifies a column according to predefined operations
 

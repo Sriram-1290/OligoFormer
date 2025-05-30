@@ -2,10 +2,10 @@
 
 use strict;
 
-require "EXE_BASE_DIR/lib/load_args.pl";
-require "EXE_BASE_DIR/lib/libfile.pl";
-require "EXE_BASE_DIR/lib/format_number.pl";
-require "EXE_BASE_DIR/lib/sequence_helpers.pl";
+require "/d/teleparadigm/OligoFormer/off-target/pita/lib/load_args.pl";
+require "/d/teleparadigm/OligoFormer/off-target/pita/lib/libfile.pl";
+require "/d/teleparadigm/OligoFormer/off-target/pita/lib/format_number.pl";
+require "/d/teleparadigm/OligoFormer/off-target/pita/lib/sequence_helpers.pl";
 
 if ($ARGV[0] eq "--help")
 {
@@ -249,7 +249,7 @@ while (<$file_ref>)
 
 __DATA__
 
-EXE_BASE_DIR/lib/add_column.pl <file>
+/d/teleparadigm/OligoFormer/off-target/pita/lib/add_column.pl <file>
 
    Adds a column to each of the lines of a file.
    Operations on more than two columns can be specified using the ',-' notation (e.g., 1,4-6,23 means columns 1,4,5,6,23)

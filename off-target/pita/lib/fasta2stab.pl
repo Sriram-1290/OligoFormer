@@ -77,7 +77,7 @@ if (length($seq) > 0)
 
 __DATA__
 
-syntax: EXE_BASE_DIR/lib/fasta2stab.pl [OPTIONS] < FASTA
+syntax: /d/teleparadigm/OligoFormer/off-target/pita/lib/fasta2stab.pl [OPTIONS] < FASTA
 
   -l <num>: Extract only line <num> of the fasta from each sequence
             (useful for parsing alignments given in fasta)

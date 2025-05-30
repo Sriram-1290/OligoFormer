@@ -1,0 +1,8 @@
+2024-01-08 13:04:09,536 prediction INFO: Using 1 GPUS, GPU ID: 0
+2024-01-08 13:04:09,536 prediction INFO: Loaded configuration file pretrained/extract_embedding.yml
+2024-01-08 13:04:09,536 prediction INFO: Model File:none
+2024-01-08 13:04:09,537 prediction INFO: Batch Size:1
+2024-01-08 13:04:09,537 prediction INFO: Threshold:0.5
+2024-01-08 13:04:09,537 prediction INFO: Prediction Dataset: ./data/examples/example.fasta
+2024-01-08 13:04:11,875 prediction.inference INFO: Enter inferencing for Custom set
+2024-01-08 13:04:29,909 prediction.inference INFO: Finish Prediction
